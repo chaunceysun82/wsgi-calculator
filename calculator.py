@@ -49,6 +49,7 @@ def guide(*args):
 3. The operators include add, substract, multiply and divide.
 4. The numbers must be integer or float.
 5. Examples: http://localhost:8080/multiply/3/5 will return 15."""
+
     instruction = instruction_text.split('\n')
 
     body_text = '<h1>{}</h1>'.format(instruction[0])
@@ -67,7 +68,7 @@ def add(*args):
 
     return body
 
-def substract(*args):
+def subtract(*args):
     res = int(args[0])-int(args[1])
     body = "<h>{} substracts {} equals {}</h>".format(args[0], args[1], res)
 
@@ -97,7 +98,7 @@ def resolve_path(path):
     # path.
     funcs = {'': guide,
              'add': add,
-             'substract': substract,
+             'subtract': subtract,
              'multiply': multiply,
              'divide': divide,
             }
