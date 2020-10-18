@@ -42,7 +42,7 @@ To submit your homework:
 """
 import traceback
 
-def instruction(*args):
+def guide(*args):
     instruction_text = """How to use this page:
 1. http://localhost:8080/ followed by operators and two numbers spaced by /.
 2. Return the operation results.
@@ -62,31 +62,26 @@ def instruction(*args):
 
 def add(*args):
     """ Returns a STRING with the sum of the arguments """
-
-    # TODO: Fill sum with the correct value, based on the
-    # args provided.
     res = int(args[0]) + int(args[1])
-    body = "<h>The result is {}</h>".format(res)
+    body = "<h>{} adds {} equals {}</h>".format(args[0], args[1], res)
 
     return body
 
-# TODO: Add functions for handling more arithmetic operations.
-
 def substract(*args):
     res = int(args[0])-int(args[1])
-    body = "<h>The result is {}</h>".format(res)
+    body = "<h>{} substracts {} equals {}</h>".format(args[0], args[1], res)
 
     return body
 
 def multiply(*args):
     res = int(args[0]) * int(args[1])
-    body = "<h>The result is {}</h>".format(res)
+    body = "<h>{} multiplies {} equals {}</h>".format(args[0], args[1], res)
 
     return body
 
 def divide(*args):
     res = int(args[0]) / int(args[1])
-    body = "<h>The result is {}</h>".format(res)
+    body = "<h>{} divided by {} equals {}</h>".format(args[0], args[1], res)
 
     return body
 
@@ -100,7 +95,7 @@ def resolve_path(path):
     # examples provide the correct *syntax*, but you should
     # determine the actual values of func and args using the
     # path.
-    funcs = {'': instruction,
+    funcs = {'': guide,
              'add': add,
              'substract': substract,
              'multiply': multiply,
@@ -109,8 +104,6 @@ def resolve_path(path):
     path = path.strip('/').split('/')
     func_name = path[0]
     args = path[1:]
-    print(func_name)
-    print(args)
 
     try:
         func = funcs[func_name]
@@ -121,17 +114,13 @@ def resolve_path(path):
 
 
 def application(environ, start_response):
-    # TODO: Your application code from the book database
-    # work here as well! Remember that your application must
-    # invoke start_response(status, headers) and also return
-    # the body of the response in BYTE encoding.
-    #
-    # TODO (bonus): Add error handling for a user attempting
-    # to divide by zero.
-    # import pprint
-    # pprint.pprint(environ)
+
+    import pprint
+    pprint.pprint(environ)
+
     status = "200 OK"
     headers = [('Content-type', 'text/html')]
+
     try:
         path = environ.get('PATH_INFO', None)
         if path is None:
