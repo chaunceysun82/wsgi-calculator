@@ -46,8 +46,8 @@ def guide(*args):
     instruction_text = """How to use this page:
 1. http://localhost:8080/ followed by operators and two numbers spaced by /.
 2. Return the operation results.
-3. The operators include add, substract, multiply and divide.
-4. The numbers must be integer or float.
+3. The operators include add, subtract, multiply and divide.
+4. The numbers must be integers.
 5. Examples: http://localhost:8080/multiply/3/5 will return 15."""
 
     instruction = instruction_text.split('\n')
